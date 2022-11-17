@@ -7,27 +7,32 @@
       <img src="{{asset('resources/images/logo-black.png')}}" class="w-28 m-auto" alt="">
     </a>
     <div class="bg-white rounded-lg shadow p-6 mt-4">
-      <h2 class="uppercase font-bold text-gray-300">signup</h2>
+      <form action="{{route('register')}}" method="POST">
+        @csrf
+        <h2 class="uppercase font-bold text-gray-300">signup</h2>
 
-      <div class="mt-4">
-        <x-input.text label="Name" name="name" error="" />
-      </div>
-      <div class="mt-2">
-        <x-input.text label="Email" name="email" error="" />
-      </div>
-      <div class="mt-2">
-        <x-input.password label="Password" name="password" error="" />
-      </div>
-      <div class="mt-2">
-        <x-input.password label="Confirm Password" name="confirm-password" error="" />
-      </div>
+        <div class="mt-4">
+          <x-input.text label="Name" value="{{old('name')}}" name="name" error="{{$errors->first('name')}}" />
+        </div>
+        <div class="mt-2">
+          <x-input.text label="Email" name="email" value="{{old('email')}}" error="{{$errors->first('email')}}" />
+        </div>
+        <div class="mt-2">
+          <x-input.password label="Password" value="{{old('password')}}" name="password"
+            error="{{$errors->first('password')}}" />
+        </div>
+        <div class="mt-2">
+          <x-input.password label="Confirm Password" name="password_confirm"
+            error="{{$errors->first('password_confirm')}}" />
+        </div>
 
-      <div class="mt-4">
-        <button class="py-1.5 text-center text-slate-200 text-xs bg-slate-600 w-full rounded">Register</button>
-      </div>
-      <div class="mt-4 text-xs text-right">
-        Have an account? <a href="signup.html" class="text-blue-500">Login</a>
-      </div>
+        <div class="mt-4">
+          <button class="py-1.5 text-center text-slate-200 text-xs bg-slate-600 w-full rounded">Signup</button>
+        </div>
+        <div class="mt-4 text-xs text-right">
+          Have an account? <a href="{{route('login.page')}}" class="text-blue-500">Login</a>
+        </div>
+      </form>
     </div>
     <div class="text-xs uppercase text-center text-gray-400 font-medium my-5">
       <i class="fa-light fa-laptop"></i> signup with

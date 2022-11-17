@@ -3,7 +3,7 @@
     <div class="border border-gray-200 pr-4 rounded overflow-hidden relative" :class="[focus && !error ? 'bg-amber-100' : 'bg-gray-50', 
     error ? 'border-red-500 bg-red-100' : 'border-gray-200']">
 
-        <input id="input-{{$name}}" :type="show ? 'text' : 'password'"
+        <input id="input-{{$name}}" :type="show ? 'text' : 'password'" name="{{$name}}"
             class="reset-input px-3 py-1.5 text-xs bg-transparent" @focus="focus = true" @click.outside="focus = false"
             @change="error = false">
 

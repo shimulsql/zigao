@@ -10,6 +10,7 @@ class Text extends Component
     public $name;
     public $icon;
     public $error;
+    public $value;
 
     /**
      * Create a new component instance.
@@ -21,11 +22,13 @@ class Text extends Component
         $name = 'name',
         $icon = '',
         $error = '',
+        $value = '',
     ) {
         $this->label = $label;
         $this->name = $name;
         $this->icon = $icon;
         $this->error = $error;
+        $this->value = $value;
     }
 
     /**
