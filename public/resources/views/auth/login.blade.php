@@ -36,7 +36,7 @@
     </div>
     <ul class="w-[70%] m-auto">
       <li>
-        <a href=""
+        <a href="{{route('login.social', 'google')}}"
           class="group bg-red-100 hover:bg-red-500 px-3 py-1.5 text-xs text-red-500 hover:text-red-100 text-center block rounded">
           <i class="fa-brands fa-google text-red-500 group-hover:text-red-50"></i> Login with Google
         </a>

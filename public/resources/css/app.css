@@ -15,3 +15,11 @@ body {
 .reset-input {
     @apply focus-visible:outline-none w-full;
 }
+
+/* backgrounds */
+.bg-google {
+    @apply bg-red-50 text-red-500;
+}
+.bg-facebook {
+    @apply bg-blue-50 text-blue-500;
+}

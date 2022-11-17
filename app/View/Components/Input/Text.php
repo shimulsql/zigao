@@ -11,6 +11,8 @@ class Text extends Component
     public $icon;
     public $error;
     public $value;
+    public $disabled;
+    public $inputClass;
 
     /**
      * Create a new component instance.
@@ -23,12 +25,16 @@ class Text extends Component
         $icon = '',
         $error = '',
         $value = '',
+        $disabled = false,
+        $inputClass = '',
     ) {
         $this->label = $label;
         $this->name = $name;
         $this->icon = $icon;
         $this->error = $error;
         $this->value = $value;
+        $this->disabled = $disabled;
+        $this->inputClass = $inputClass;
     }
 
     /**
