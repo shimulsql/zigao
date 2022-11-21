@@ -24,7 +24,7 @@ use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('homepage');
 
 
 /**

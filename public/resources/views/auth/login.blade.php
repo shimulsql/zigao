@@ -42,7 +42,7 @@
         </a>
       </li>
       <li class="mt-2">
-        <a href=""
+        <a href="{{route('login.social', 'facebook')}}"
           class="group bg-blue-100 hover:bg-blue-500 px-3 py-1.5 text-xs text-blue-500 hover:text-blue-100 text-center block rounded">
           <i class="fa-brands fa-facebook text-blue-500 group-hover:text-blue-50"></i> Login with Facebook
         </a>
