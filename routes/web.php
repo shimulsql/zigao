@@ -8,6 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\Home\HomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
 
@@ -22,9 +23,7 @@ use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('homepage');
+Route::get('/', [HomeController::class, 'home'])->name('homepage');
 
 
 /**
