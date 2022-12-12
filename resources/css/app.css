@@ -23,3 +23,42 @@ body {
 .bg-facebook {
     @apply bg-blue-50 text-blue-500;
 }
+
+/* Forms */
+.form-control {
+    @apply block rounded px-3.5 py-1.5 w-full border border-gray-200 outline-none text-sm focus:border-blue-400 focus:shadow-[0_0_0_3px_#2f72e32e];
+}
+
+/* CKEditor config */
+.ck-editor__editable[role="textbox"] {
+    /* editing area */
+    min-height: 200px;
+}
+
+/* Select2 tailwind theme */
+.select2-tw + .select2 .select2-selection{
+    @apply !border-gray-200;
+}
+
+.select2-dropdown{
+    @apply bg-white !border-gray-200 shadow rounded-md;
+}
+.select2-dropdown .select2-results__options{
+    @apply flex p-2 gap-1 flex-wrap;
+}
+.select2-dropdown .select2-results__options li{
+    @apply w-[33%] rounded;
+}
+.select2-dropdown .select2-results__options li.select2-results__option--highlighted{
+    @apply bg-gray-100;
+}
+
+.select2-tw + .select2 .select2-selection__choice{
+    @apply !border-transparent !bg-sky-100 text-sky-700;
+}
+.select2-tw + .select2 .select2-selection__choice button{
+    @apply text-sky-700 border-sky-200;
+}
+.select2-tw + .select2 .select2-selection__choice span{
+    @apply text-xs;
+}

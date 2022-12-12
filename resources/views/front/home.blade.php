@@ -1,10 +1,11 @@
 @extends('layouts.home')
+
 @section('content')
 <div class="md:my-5 mb-5 flex items-center px-4 justify-between">
   <h1 class="text-lg">
     Top Questions
   </h1>
-  <a href="#"
+  <a href="{{route('question.add')}}"
     class="px-4 py-2 bg-sky-500 hover:bg-sky-600 rounded text-white hover:text-sky-100 text-sm border-t border-sky-300">Ask
     Question</a>
 </div>

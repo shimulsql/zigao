@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\System\QuestionController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
 
@@ -24,6 +25,17 @@ use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('homepage');
+
+
+/**
+ * -----------------------
+ *    Question Routes    |
+ * -----------------------
+ */
+
+Route::middleware('auth')->prefix('question')->name('question.')->group(function () {
+    Route::get('add', [QuestionController::class, 'add_question'])->name('add');
+});
 
 
 /**

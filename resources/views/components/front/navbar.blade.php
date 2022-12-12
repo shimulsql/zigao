@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="flex items-center">
             <div class="w-[150px]">
-                <img class="w-24" src="{{asset('images/logo.png')}}" alt="">
+                <a href="{{route('homepage')}}"><img class="w-24" src="{{asset('images/logo.png')}}" alt=""></a>
             </div>
             <div class="grow px-5">
                 <div class="relative">
