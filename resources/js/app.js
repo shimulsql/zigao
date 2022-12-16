@@ -23,8 +23,7 @@ function optionTemplate(state){
     if (!state.id) {
         return state.text;
     }
-
-    var count = $(state.element).data("count");
+    var count = state.count;
 
     if(count == undefined) return $('<span class="px-2 py-0.5 bg-sky-200 text-sky-700 text-xs rounded font-medium">' + state.text + '</span>'); 
 
@@ -39,4 +38,15 @@ $('#tag-selector').select2({
     width: "100%",
     tags: true,
     templateResult: optionTemplate,
+    ajax: {
+        url: 'http://zigao.test/api/tags/search',
+        dataType: 'json',
+        delay: 300,
+        processResults: function (data) {
+            console.log(data);
+            return {
+              results: data
+            };
+        },
+    }
 });

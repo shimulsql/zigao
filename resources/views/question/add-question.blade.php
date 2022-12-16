@@ -36,13 +36,13 @@ bg-gray-50
     <div class="p-4 bg-white rounded shadow mt-6">
       <label for="q-content" class="block text-slate-700 mb-2">
         <span class="block text-sm cursor-pointer">Tags</span>
-        <span class="text-[12px] text-medium">Be specific, imagine you're asking a question to another person</span>
+        <span class="text-[12px] text-medium">Select some tags </span>
       </label>
       <select id="tag-selector" class="select2-tw" name="state" multiple="true">
-        <option value="php" data-count="2413">php</option>
+        {{-- <option value="php" data-count="2413">php</option>
         <option value="javascript" data-count="1271">javascript</option>
         <option value="php" data-count="2413">react</option>
-        <option value="javascript" data-count="1271">laravel</option>
+        <option value="javascript" data-count="1271">laravel</option> --}}
       </select>
     </div>
     <button type="submit" class="px-3 py-1.5 bg-sky-500 rounded text-sm text-white mt-5">Review your question</button>
