@@ -27,7 +27,6 @@
       </div>
     </div>
   </div>
-  @yield('css')
   @yield('js')
 </body>
 

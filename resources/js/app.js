@@ -1,52 +1,21 @@
 import "./bootstrap";
 import "../fonts/fontawesome/css/all.min.css";
 import "select2/dist/css/select2.min.css";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
 import select2 from "select2";
+import Alpine from "alpinejs";
+import axios from "axios";
 
-// text editor
-ClassicEditor.create(document.querySelector("#q-editor")).catch((error) => {
-    console.error(error);
-});
+// config axios
+window.axios = axios;
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
-/**
- * Select 2
- * */
+window.Alpine = Alpine;
 
-// hook up jquery
+// hook up jquery to select2
 select2($);
 
-// question tag selector
+// question page js
+import './pages/question.js';
 
-// format list item
-function optionTemplate(state){
-    if (!state.id) {
-        return state.text;
-    }
-    var count = state.count;
 
-    if(count == undefined) return $('<span class="px-2 py-0.5 bg-sky-200 text-sky-700 text-xs rounded font-medium">' + state.text + '</span>'); 
 
-    var template = $(
-        '<div class="flex"><div class="w-[90%] grow"><span class="px-2 py-0.5 bg-sky-200 text-sky-700 text-xs rounded font-medium">' + state.text + '</span> <span class="text-gray-500 text-xs">'+count+'</span></div><div><a href="" target="_blank"><i class="fa-solid fa-circle-question text-xs text-gray-500 p-1 hover:bg-white rounded"></i></a></div></div>'
-    );
-
-    return template;
-}
-
-$('#tag-selector').select2({
-    width: "100%",
-    tags: true,
-    templateResult: optionTemplate,
-    ajax: {
-        url: 'http://zigao.test/api/tags/search',
-        dataType: 'json',
-        delay: 300,
-        processResults: function (data) {
-            console.log(data);
-            return {
-              results: data
-            };
-        },
-    }
-});

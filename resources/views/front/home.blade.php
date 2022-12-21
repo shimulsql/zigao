@@ -5,7 +5,7 @@
   <h1 class="text-lg">
     Top Questions
   </h1>
-  <a href="{{route('question.add')}}"
+  <a href="{{route('question.create')}}"
     class="px-4 py-2 bg-sky-500 hover:bg-sky-600 rounded text-white hover:text-sky-100 text-sm border-t border-sky-300">Ask
     Question</a>
 </div>

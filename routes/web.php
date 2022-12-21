@@ -33,8 +33,8 @@ Route::get('/', [HomeController::class, 'home'])->name('homepage');
  * -----------------------
  */
 
-Route::middleware('auth')->prefix('question')->name('question.')->group(function () {
-    Route::get('add', [QuestionController::class, 'add_question'])->name('add');
+Route::middleware('auth')->group(function () {
+    Route::resource('question', QuestionController::class);
 });
 
 
