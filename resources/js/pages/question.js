@@ -1,6 +1,7 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 // question editor
 
+
 ClassicEditor.create(document.querySelector("#q-editor"))
 .then((editor) => {
 
@@ -44,10 +45,7 @@ ClassicEditor.create(document.querySelector("#q-editor"))
 
     submitData(){
 
-      if(
-        this.complete.title &&
-        this.complete.content
-      )
+      if( this.complete.title && this.complete.content )
       {
         // axios.post(`${import.meta.env.VITE_APP_URL}/api`)
       }
@@ -55,6 +53,7 @@ ClassicEditor.create(document.querySelector("#q-editor"))
     },
 
     init(){
+      const that = this;
 
       editor.model.document.on( 'change:data', () => {
         this.content = editor.getData();
@@ -81,9 +80,18 @@ ClassicEditor.create(document.querySelector("#q-editor"))
       })
 
 
+      this.$watch('tags', (data) => {
+       console.log('watching tags', data);
+      })
+
+      this.$watch(['title', 'content', 'tags'], () => {
+        console.log('data changing');
+      })
+
+
 
       // tag selector
-      let tagSelector = $('#tag-selector').select2({
+      $(this.$refs.select2).select2({
           width: "100%",
           tags: true,
           templateResult: optionTemplate,
@@ -99,12 +107,12 @@ ClassicEditor.create(document.querySelector("#q-editor"))
           }
       });
 
-      $(tagSelector).on('change', function(e){
+      $(this.$refs.select2).on('change', function(e){
         let options = Array.from(e.target.options)
         .filter(option => option.selected)
-        .map(option => option.value);
+        .map(option => option.text)
 
-        this.tags = options;
+        that.tags = options
       })
 
     }

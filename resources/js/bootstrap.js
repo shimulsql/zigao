@@ -1,7 +1,15 @@
 import _ from "lodash";
 import $ from 'jquery';
+import select2 from "select2";
+import Alpine from "alpinejs";
+import "select2/dist/css/select2.min.css";
+
 window._ = _;
 window.$ = window.jQuery = $;
+window.Alpine = Alpine;
+
+// hook up jquery to select2
+select2($);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

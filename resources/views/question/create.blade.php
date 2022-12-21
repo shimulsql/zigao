@@ -53,7 +53,7 @@ bg-gray-50
           <span class="block text-sm cursor-pointer">Tags</span>
           <span class="text-[12px] text-medium">Select some tags </span>
         </label>
-        <select id="tag-selector" class="select2-tw" name="state" x-model="tags" multiple="true">
+        <select id="tag-selector" x-ref="select2" class="select2-tw" name="state" multiple="true">
         </select>
       </div>
       <button type="submit" class="px-3 py-1.5 rounded text-sm text-white mt-5" :class="complete.title && complete.content ? 'bg-sky-500' : 'bg-sky-200 cursor-not-allowed'" @click.prevent="submitData()">Review your question</button>
