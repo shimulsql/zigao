@@ -37,6 +37,11 @@ class RegisterController extends Controller
         // create user
         $user = User::create($request->all());
 
+        // generate token 
+        // token will be generated through 
+        $user->token = $user->id;
+        $user->save();
+
         event(new Registered($user));
 
         // redirect to login page

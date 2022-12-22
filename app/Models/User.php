@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Str;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Crypt;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -27,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'provider',
         'provider_id',
         'password',
+        'token',
     ];
 
     /**
@@ -51,5 +54,15 @@ class User extends Authenticatable implements MustVerifyEmail
     protected function password(): Attribute
     {
         return Attribute::set(fn ($value) => Hash::make($value));
+    }
+
+    protected function token() : Attribute
+    {
+        return Attribute::set(function ($user_id){
+            $str_user_enc = base64_encode(base64_encode($user_id));
+            $str_random = Str::random(20);
+
+            return $str_random . '.' . $str_user_enc;
+        });
     }
 }

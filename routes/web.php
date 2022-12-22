@@ -12,6 +12,7 @@ use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\System\QuestionController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
+use Illuminate\Support\Facades\Crypt;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 
 // test
-Route::get('sendmail', function () {
-    Mail::to('mrshimul000@gmail.com')->send(new TestMail);
+Route::get('test', function () {
+
 });

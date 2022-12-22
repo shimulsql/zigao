@@ -72,6 +72,10 @@ class SocialController extends Controller
 
         $user->markEmailAsVerified();
 
+        // generate token
+        $user->token = $user->id;
+        $user->save();
+
         Auth::login($user);
 
         $request->session()->regenerate();
