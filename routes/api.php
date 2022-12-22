@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'api'], function(){
     Route::get('/tags/search', [TagsController::class, 'search']);
 });
