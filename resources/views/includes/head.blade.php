@@ -13,4 +13,9 @@
   @yield('css')
 
   {{-- <script defer src="https://unpkg.com/alpinejs@3.10.4/dist/cdn.min.js"></script> --}}
+
+  {{-- Everytime we refresh, The token will be added to the LS  --}}
+  <script>
+    window.localStorage.setItem('token', "{{$user_token}}")
+  </script>
 </head>

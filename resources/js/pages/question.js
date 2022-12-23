@@ -99,6 +99,14 @@ document.addEventListener("DOMContentLoaded", function(){
               templateResult: optionTemplate,
               ajax: {
                   url: import.meta.env.VITE_APP_URL + '/api/tags/search',
+                  data: function(params){
+                    var query = {
+                      q: params.term,
+                      _token: localStorage.getItem('token')
+                    }
+
+                    return query
+                  },
                   dataType: 'json',
                   delay: 300,
                   processResults: function (data) {
