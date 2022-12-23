@@ -6,4 +6,10 @@ import "../fonts/fontawesome/css/all.min.css";
 import './pages/question.js';
 
 
+// start alpine at the last
+document.addEventListener("DOMContentLoaded", function(){
+  Alpine.start(); 
+})
+
+
 
