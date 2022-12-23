@@ -17,9 +17,13 @@ class SimpleTokenApiMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $token = $request->header('x-token');
+        $utoken = $request->header('x-token');
+        $ptoken = $request->params('_token');
 
-        if (!User::where('token', $token)->first()) {
+        if (
+            !User::where('token', $utoken)->first() ||
+            !User::where('token', $ptoken)->first()
+        ) {
             return response()->json(['message' => 'Invalid Token'], 401);
         }
         return $next($request);
