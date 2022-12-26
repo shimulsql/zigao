@@ -51,6 +51,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Relationships
+     */
+
+    public function draft(){
+        return $this->hasOne(DraftQuestion::class);
+    }
+
+
+    /**
+     * Casts
+     */
     protected function password(): Attribute
     {
         return Attribute::set(fn ($value) => Hash::make($value));
@@ -65,4 +77,5 @@ class User extends Authenticatable implements MustVerifyEmail
             return $str_random . '.' . $str_user_enc;
         });
     }
+
 }

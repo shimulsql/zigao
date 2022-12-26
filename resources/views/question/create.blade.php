@@ -25,20 +25,20 @@ bg-gray-50
           <span class="block text-sm cursor-pointer">Title</span>
           <span class="text-[12px] text-medium">Be specific, imagine you're asking a question to another person</span>
         </label>
-        <input type="text" name="title" id="title" x-model="title" class="form-control">
+        <input type="text" name="title" id="title" x-model="title" class="form-control" value="" x-init="title = '{{$draft ? "$draft->title" : ""}}'">
         <div class="mt-4" x-show="!complete.title">
           <button @click.prevent="unlockContent()" class="py-2 px-3 text-white text-sm rounded" :class="complete.nextTitle ? 'bg-blue-500' : 'bg-blue-300 cursor-not-allowed'">Next</button>
         </div>
       </div>
       <div class="p-4 bg-white rounded shadow mt-6 relative overflow-hidden">
-        <div x-show="!complete.title" class="lock absolute inset-0 bg-gray-50 flex justify-center items-center opacity-80 text-gray-300 z-10">
+        <div x-show="!complete.title" class="lock absolute inset-0 bg-gray-50 flex justify-center items-center opacity-80 text-gray-300 z-10 cursor-not-allowed">
           <i class="fa-solid fa-lock text-6xl"></i>
         </div>
         <label for="q-content" class="block text-slate-700 mb-2">
           <span class="block text-sm cursor-pointer">Content</span>
           <span class="text-[12px] text-medium">Be specific, imagine you're asking a question to another person</span>
         </label>
-        <textarea name="content" id="q-editor"></textarea>
+        <textarea name="content" id="q-editor">@if ($draft){{$draft->content}}@endif</textarea>
         <div class="mt-4" x-show="complete.title">
           <div x-show="!complete.content">
             <button @click.prevent="unlockTags()" class="py-2 px-3 text-white text-sm rounded" :class="complete.nextContent ? 'bg-blue-500' : 'bg-blue-300 cursor-not-allowed'">Next</button>
@@ -46,17 +46,22 @@ bg-gray-50
         </div>
       </div>
       <div class="p-4 bg-white rounded shadow mt-6 relative overflow-hidden">
-        <div x-show="!complete.content" class="lock absolute inset-0 bg-gray-50 flex justify-center items-center opacity-80 text-gray-300 z-10">
+        <div x-show="!complete.content" class="lock absolute inset-0 bg-gray-50 flex justify-center items-center opacity-80 text-gray-300 z-10 cursor-not-allowed">
           <i class="fa-solid fa-lock text-6xl"></i>
         </div>
         <label for="q-content" class="block text-slate-700 mb-2">
           <span class="block text-sm cursor-pointer">Tags</span>
           <span class="text-[12px] text-medium">Select some tags </span>
         </label>
-        <select id="tag-selector" x-ref="select2" class="select2-tw" name="state" multiple="true">
+        <select id="tag-selector" x-ref="select2" class="select2-tw" name="state" multiple="true" x-init="tagsStr = '{{$draft ? "$draft->tags" : ""}}'">
         </select>
       </div>
-      <button type="submit" class="px-3 py-1.5 rounded text-sm text-white mt-5" :class="complete.title && complete.content ? 'bg-sky-500' : 'bg-sky-200 cursor-not-allowed'" @click.prevent="submitData()">Review your question</button>
+      <div class="flex gap-3">
+        <button type="submit" class="px-3 py-1.5 rounded text-sm text-white mt-5" :class="complete.all ? 'bg-sky-500 hover:bg-sky-600' : 'bg-sky-200 cursor-not-allowed'" @click.prevent="submitData()">Review your question</button>
+        @if ($draft)
+        <button type="submit" class="px-3 py-1.5 rounded text-sm text-red-600 bg-red-50 hover:bg-red-100 mt-5" @click.prevent="">Discard Draft</button>
+        @endif
+      </div>
     </form>
   </div>
 @endsection

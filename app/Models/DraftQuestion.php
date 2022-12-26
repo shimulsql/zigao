@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DraftQuestion extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'title',
+        'content',
+        'tags',
+    ];
 }

@@ -1,5 +1,6 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import _ from "lodash";
+import { strToSelect } from "../helpers/select2";
 // question editor
 
 
@@ -12,9 +13,12 @@ document.addEventListener("DOMContentLoaded", function(){
       Alpine.data('questionState', () => ({
         title: '',
         content: '',
+        tagsStr: '',
         tags: [],
         
         complete: {
+          all: false,
+
           title: false,
           content: false,
 
@@ -47,8 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
         },
 
         submitData(){
-          console.log('submit call');
-          if( this.complete.title && this.complete.content )
+          if( this.complete.all )
           {
             // axios.post(`${import.meta.env.VITE_APP_URL}/api`)
           }
@@ -71,6 +74,22 @@ document.addEventListener("DOMContentLoaded", function(){
           editor.model.document.on( 'change:data', () => {
             this.content = editor.getData();
           });
+          this.content = editor.getData();
+
+          // if data is present on initialization, set complete status to true
+          setTimeout(() => {
+            if(
+              this.title.length > 5 &&
+              editor.getData().length > 20 
+              )
+            {
+              this.complete.title = true;
+              this.complete.content = true;
+              this.complete.nextTitle = true;
+              this.complete.nextContent = true;
+            }
+          }, 100);
+          
 
           // watch title
           this.$watch('title', (data) => {
@@ -98,38 +117,57 @@ document.addEventListener("DOMContentLoaded", function(){
           })
 
           
-        
+          this.$watch('tagsStr', (data) => {
+            // set string tags data to tags array
+            that.tags = strToSelect(data, true);          
+          })
 
+          // watch all to save data as draft
           this.$watch(['title', 'content', 'tags'], _.debounce(() => {
             this.saveDraft()
-          }, 1000))
+          }, 3000))
+
+
+          this.$watch(['complete.title', 'complete.content'], () => {
+            if(
+              this.complete.title &&
+              this.complete.content 
+            ){
+              this.complete.all = true
+            }
+          }, 1000)
 
 
 
-          // tag selector
-          $(this.$refs.select2).select2({
-              width: "100%",
-              tags: true,
-              templateResult: optionTemplate,
-              ajax: {
-                  url: import.meta.env.VITE_APP_URL + '/api/tags/search',
-                  data: function(params){
-                    var query = {
-                      q: params.term,
-                      _token: localStorage.getItem('token')
-                    }
+        // tag selector
+        setTimeout(() => {
+          let s2inst = $(this.$refs.select2).select2({
+            width: "100%",
+            tags: true,
+            templateResult: optionTemplate,
+            data: strToSelect(this.tagsStr),
+            ajax: {
+                url: import.meta.env.VITE_APP_URL + '/api/tags/search',
+                data: function(params){
+                  var query = {
+                    q: params.term,
+                    _token: localStorage.getItem('token')
+                  }
 
-                    return query
-                  },
-                  dataType: 'json',
-                  delay: 300,
-                  processResults: function (data) {
-                      return {
-                        results: data
-                      };
-                  },
-              }
+                  return query
+                },
+                dataType: 'json',
+                delay: 500,
+                processResults: function (data) {
+                    return {
+                      results: data
+                    };
+                },
+            }
           });
+
+        }, 100);
+          
 
           $(this.$refs.select2).on('change', function(e){
             let options = Array.from(e.target.options)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\System;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DraftQuestion;
 
 class QuestionController extends Controller
 {
@@ -25,8 +26,9 @@ class QuestionController extends Controller
     public function create()
     {
         $title = "Add new question";
+        $draft = DraftQuestion::where('user_id', auth()->user()->id)->first();
 
-        return view('question.create', ['title' => $title]);
+        return view('question.create', ['title' => $title, 'draft' => $draft]);
     }
 
     /**

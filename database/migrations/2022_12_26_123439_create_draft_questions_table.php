@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('draft_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('title');
-            $table->longText('content');
-            $table->string('tags');
+            $table->string('title')->nullable();
+            $table->longText('content')->nullable();
+            $table->string('tags')->nullable();
+            $table->integer('review')->default(0);
             $table->timestamps();
         });
     }

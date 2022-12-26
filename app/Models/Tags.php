@@ -17,7 +17,7 @@ class Tags extends Model
     public static function selectable( $items )
     {
         return array_map(function($item){
-            return ['id' => $item['id'], 'text' => $item['name'], 'count' => 3510];
+            return ['id' => $item['name'], 'text' => $item['name'], 'count' => 3510];
         }, $items);
 
     }
