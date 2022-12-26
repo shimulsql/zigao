@@ -1,4 +1,5 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import _ from "lodash";
 // question editor
 
 
@@ -46,12 +47,22 @@ document.addEventListener("DOMContentLoaded", function(){
         },
 
         submitData(){
-
+          console.log('submit call');
           if( this.complete.title && this.complete.content )
           {
             // axios.post(`${import.meta.env.VITE_APP_URL}/api`)
           }
 
+        },
+
+        saveDraft(){
+          axios.post(`${import.meta.env.VITE_APP_URL}/api/question/save-draft`, {
+            data: {
+              title: this.title,
+              content: this.content,
+              tags: Array.from(this.tags).join('+')
+            }
+          })
         },
 
         init(){
@@ -86,9 +97,12 @@ document.addEventListener("DOMContentLoaded", function(){
           console.log('watching tags', data);
           })
 
-          this.$watch(['title', 'content', 'tags'], () => {
-            console.log('data changing');
-          })
+          
+        
+
+          this.$watch(['title', 'content', 'tags'], _.debounce(() => {
+            this.saveDraft()
+          }, 1000))
 
 
 
