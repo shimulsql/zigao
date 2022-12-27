@@ -37,4 +37,11 @@ class QuestionController extends Controller
             DraftQuestion::create($data);
         }
     }
+
+    public function deleteDraft(Request $request){
+        $user = User::where('token', $request->header('X-Token'))->first();
+        $draft = $user->draft()->first();
+
+        $draft->delete();
+    }
 }

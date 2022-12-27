@@ -30,4 +30,5 @@ Route::group(['middleware' => 'api'], function(){
 // save question as draft
 Route::group(['middleware' => 'api', 'prefix' => 'question'], function(){
     Route::post('save-draft', [QuestionController::class, 'saveDraft']);
+    Route::delete('delete-draft', [QuestionController::class, 'deleteDraft']);
 });

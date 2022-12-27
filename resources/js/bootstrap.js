@@ -3,10 +3,12 @@ import $ from 'jquery';
 import select2 from "select2";
 import Alpine from "alpinejs";
 import "select2/dist/css/select2.min.css";
+import Swal from 'sweetalert2';
 
 window._ = _;
 window.$ = window.jQuery = $;
 window.Alpine = Alpine;
+window.Swal = Swal;
 
 // hook up jquery to select2
 select2($);
@@ -22,6 +24,7 @@ window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 window.axios.defaults.headers.common["X-Token"] = localStorage.getItem('token');
+window.axios.defaults.baseURL = import.meta.env.VITE_APP_URL + '/api';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

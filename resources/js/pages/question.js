@@ -1,4 +1,5 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import axios from "axios";
 import _ from "lodash";
 import { strToSelect } from "../helpers/select2";
 // question editor
@@ -25,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function(){
           nextTitle: false,
           nextContent: false,
         },
+
+        draft: false,
 
         unlockContent(){
 
@@ -59,11 +62,33 @@ document.addEventListener("DOMContentLoaded", function(){
         },
 
         saveDraft(){
-          axios.post(`${import.meta.env.VITE_APP_URL}/api/question/save-draft`, {
+          if(!this.draft) this.draft = true;
+
+          axios.post(`/question/save-draft`, {
             data: {
               title: this.title,
               content: this.content,
               tags: Array.from(this.tags).join('+')
+            }
+          })
+        },
+
+        clearDraft(){
+          Swal.fire({
+            title: 'Discard Question',
+            text: "Are you sure to discard this question? This cannot be undone",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#c94239',
+            cancelButtonColor: '#757575',
+            confirmButtonText: 'Discard Question',
+            backdrop: 'rgba(94, 57, 57, 0.51)'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              axios.delete('question/delete-draft')
+              .then(() => {
+                window.location.reload()
+              })
             }
           })
         },
@@ -125,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function(){
           // watch all to save data as draft
           this.$watch(['title', 'content', 'tags'], _.debounce(() => {
             this.saveDraft()
-          }, 3000))
+          }, 2000))
 
 
           this.$watch(['complete.title', 'complete.content'], () => {
