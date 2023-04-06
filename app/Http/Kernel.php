@@ -44,6 +44,7 @@ class Kernel extends HttpKernel
             'token:api',
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\VerifyToken::class,
         ],
     ];
 

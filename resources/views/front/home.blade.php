@@ -384,7 +384,7 @@
 
     <li>
       <a href="#"
-        class="px-2 py-1 rounded text-white text-xs border border-transparent  text-gray-800 !border-gray-200 ">
+        class="px-2 py-1 rounded text-xs border border-transparent  text-gray-800 !border-gray-200 ">
         1
       </a>
     </li>
@@ -397,14 +397,14 @@
 
     <li>
       <a href="#"
-        class="px-2 py-1 rounded text-white text-xs border border-transparent  text-gray-800 !border-gray-200 ">
+        class="px-2 py-1 rounded text-xs border border-transparent  text-gray-800 !border-gray-200 ">
         3
       </a>
     </li>
 
     <li>
       <a href="#"
-        class="px-2 py-1 rounded text-white text-xs border border-transparent  text-gray-800 !border-gray-200 ">
+        class="px-2 py-1 rounded text-xs border border-transparent  text-gray-800 !border-gray-200 ">
         4
       </a>
     </li>
@@ -421,14 +421,14 @@
 
       <li>
         <a href="#"
-          class="px-2 py-1 rounded text-white text-xs border border-transparent  text-gray-800 !border-gray-200 ">
+          class="px-2 py-1 rounded text-xs border border-transparent  text-gray-800 !border-gray-200 ">
           30
         </a>
       </li>
 
       <li>
         <a href="#"
-          class="px-2 py-1 rounded text-white text-xs border border-transparent  text-gray-800 !border-gray-200 ">
+          class="px-2 py-1 rounded text-xs border border-transparent  text-gray-800 !border-gray-200 ">
           50
         </a>
       </li>

@@ -57,7 +57,12 @@ bg-gray-50
         </select>
       </div>
       <div class="flex gap-3">
-        <button type="submit" class="px-3 py-1.5 rounded text-sm text-white mt-5" :class="complete.all ? 'bg-sky-500 hover:bg-sky-600' : 'bg-sky-200 cursor-not-allowed'" @click.prevent="submitData()">Review your question</button>
+        <button type="submit" class="px-3 py-1.5 rounded text-sm text-white mt-5" :class="(complete.all ? 'bg-sky-500 hover:bg-sky-600' : 'bg-sky-200 cursor-not-allowed')+(loading ? ' bg-sky-600' : '')" @click.prevent="submitData()">
+          <template x-if="loading">
+            <x-front.utils.spinner />
+          </template>
+           Create question
+          </button>
 
         <button type="submit" x-show="draft" class="px-3 py-1.5 rounded text-sm text-red-600 bg-red-50 hover:bg-red-100 mt-5" @click.prevent="clearDraft()" x-init="draft = '{{$draft ? true : false}}'">Discard Draft</button>
       </div>

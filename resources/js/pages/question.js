@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
         content: '',
         tagsStr: '',
         tags: [],
+        loading: false,
         
         complete: {
           all: false,
@@ -56,7 +57,14 @@ document.addEventListener("DOMContentLoaded", function(){
         submitData(){
           if( this.complete.all )
           {
-            // axios.post(`${import.meta.env.VITE_APP_URL}/api`)
+            this.loading = true;
+
+            axios.post(`/question`)
+            .then(res => {
+              this.loading = false;
+              // redirect
+              window.location = '/'
+            })
           }
 
         },
@@ -160,6 +168,9 @@ document.addEventListener("DOMContentLoaded", function(){
             ){
               this.complete.all = true
             }
+            else{
+              this.complete.all = false
+            }
           }, 1000)
 
 
@@ -173,10 +184,12 @@ document.addEventListener("DOMContentLoaded", function(){
             data: strToSelect(this.tagsStr),
             ajax: {
                 url: import.meta.env.VITE_APP_URL + '/api/tags/search',
+                headers: {
+                  "X-Token": localStorage.getItem('token'),
+                },
                 data: function(params){
                   var query = {
-                    q: params.term,
-                    _token: localStorage.getItem('token')
+                    q: params.term
                   }
 
                   return query
