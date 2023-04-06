@@ -8,7 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialController;
-use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\System\QuestionController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
