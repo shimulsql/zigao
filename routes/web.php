@@ -9,7 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Web\HomeController;
-use App\Http\Controllers\System\QuestionController;
+use App\Http\Controllers\Web\QuestionController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\User\Dashboard\DashboardController as UDashboard;
 use Illuminate\Support\Facades\Crypt;

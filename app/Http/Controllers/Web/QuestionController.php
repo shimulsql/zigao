@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\System;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,7 +23,7 @@ class QuestionController extends Controller
         $title = "Add new question";
         $draft = DraftQuestion::where('user_id', auth()->user()->id)->first();
 
-        return view('question.create', ['title' => $title, 'draft' => $draft]);
+        return view('web.question.create', ['title' => $title, 'draft' => $draft]);
     }
 
     /**
