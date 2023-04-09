@@ -35,8 +35,11 @@ Route::get('/', [HomeController::class, 'home'])->name('homepage');
  */
 
 Route::middleware('auth')->group(function () {
-    Route::resource('question', QuestionController::class);
+    Route::resource('question', QuestionController::class)->except(['show']);
 });
+
+// view question
+Route::get('/question/{id}', [QuestionController::class, 'show'])->name('question.show');
 
 
 /**

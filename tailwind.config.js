@@ -4,11 +4,12 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./node_modules/tw-elements/dist/js/**/*.js",
     ],
     theme: {
         extend: {},
         fontFamily: {
-            base: ["Open sans", "sans-serif"],
+            base: ["Inter", "sans-serif"],
             roboto: ["Roboto Slab", "sans-serif"],
         },
     },

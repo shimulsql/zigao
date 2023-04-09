@@ -1,4 +1,4 @@
-@extends('layouts.home-full')
+@extends('layouts.app-full')
 
 @section('content')
 <div class="min-h-[100vh] bg-no-repeat bg-[-300px_0] bg-contain mt-10 px-10"

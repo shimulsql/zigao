@@ -12,7 +12,9 @@
       </div>
       <div class="w-full grow">
         <!--Page Contents Goes Here  -->
-
+        <div>
+          @yield('before-content')
+        </div>
         <div class="md:flex">
           <div class="md:w-9/12 w-full pr-6">
             <!-- main contents start -->
@@ -31,6 +33,7 @@
       </div>
     </div>
   </div>
+  @yield('script')
 </body>
 
 </html>

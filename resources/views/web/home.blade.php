@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.app')
 
 @section('content')
 <div class="md:my-5 mb-5 flex items-center px-4 justify-between">

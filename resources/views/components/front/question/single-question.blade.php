@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="px-4 grow">
-      <a href="" class="text-blue-500 hover:text-blue-400 text-lg">{{$question->title}}</a>
+      <a href="{{route('question.show', $question->id)}}" class="text-blue-500 hover:text-blue-400 text-lg">{{$question->title}}</a>
   
       <div class="flex mt-1">
         <div class="w-8/12">
