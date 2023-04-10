@@ -33,6 +33,7 @@
       </div>
     </div>
   </div>
+  @include('includes.footer')
   @yield('script')
 </body>
 

@@ -249,3 +249,38 @@ function optionTemplate(state){
 
     return template;
 }
+
+
+// Answer of question
+document.addEventListener("DOMContentLoaded", function(){
+  if(document.querySelector('#answer')) {
+
+    ClassicEditor.create(document.querySelector('#answer'))
+    .then( editor => {
+
+      Alpine.data("answerState", () => ({
+        content: '',
+
+        init(){
+          const that = this;
+
+          editor.model.document.on( 'change:data', () => {
+            this.content = editor.getData();
+            console.log(editor.getData());
+          });
+          this.content = editor.getData();
+
+          // Watchers 
+          this.$watch('content', (data) => {
+            console.log(data);
+          })
+        }
+
+
+      }));
+
+      
+
+    })
+  }
+})

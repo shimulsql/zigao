@@ -1,13 +1,19 @@
+@import 'ckeditor-tailwind-reset.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html{
+  @apply h-full;
+}
+
 body {
-    @apply font-base pt-14;
+    @apply font-base pt-14 min-h-full flex flex-col;
 }
 
 .container {
-    @apply  2xl:w-[70%] md:w-[98.5%] w-full sm:px-4 px-0 m-auto;
+    @apply  2xl:w-[70%] md:w-[98.5%] w-full sm:px-4 px-0 m-auto flex items-stretch grow shrink-0 basis-auto;
 }
 
 /* forms  */
@@ -22,6 +28,15 @@ body {
 }
 .bg-facebook {
     @apply bg-blue-50 text-blue-500;
+}
+
+/* Buttons */
+.btn{
+  @apply px-4 py-1.5 sm:py-3  text-white hover:text-sky-100 text-xs border-t rounded shadow;
+}
+
+.btn-primary{
+ @apply bg-sky-500 hover:bg-sky-600  border-sky-300;
 }
 
 /* Forms */

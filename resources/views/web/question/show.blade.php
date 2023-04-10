@@ -29,7 +29,7 @@
 @endsection
 
 @section('content')
-<div class="px-6">
+<div class="px-6 pb-6">
   <div class="flex gap-5">
     <div class="w-[5%] flex flex-col items-center">
       <i class="fa-solid fa-caret-up text-5xl text-orange-500 cursor-pointer" 
@@ -91,6 +91,8 @@
       </div>
     </div>
   </div>
+  {{-- Answer form  --}}
+  @include('web.question.parts.answer-form')
 </div>
 @endsection
 
