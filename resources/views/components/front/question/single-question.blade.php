@@ -28,7 +28,7 @@
             <img src="/images/profile.jpg" class="h-7 w-7 rounded object-cover mr-2" alt="">
             <div>
               <a href="" class="block text-xs text-blue-500">Mostafizur Rahman</a>
-              <p class="text-[10px] text-gray-500">asked 10 minutes ago</p>
+              <p class="text-[10px] text-gray-500">asked {{$question->updated_at->diffForHumans()}}</p>
             </div>
           </div>
         </div>

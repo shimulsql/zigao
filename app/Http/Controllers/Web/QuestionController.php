@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Question;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\DraftQuestion;
+use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller
 {
@@ -29,8 +30,11 @@ class QuestionController extends Controller
 
     public function show($id)
     {
+        $question = Question::where('id', $id)->with('tags', 'user')->first();
+
         $data = [
-            'title' => 'Show Question'
+            'title' => 'Show Question',
+            'question' => $question,
         ];
 
         return view('web.question.show', $data);
