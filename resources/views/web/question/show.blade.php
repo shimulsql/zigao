@@ -91,7 +91,20 @@
       </div>
     </div>
   </div>
+
+  {{-- List answers --}}
+  <div class="flex justify-between px-3 py-1.5 rounded bg-gray-50 mt-6">
+    <h3 class="text-gray-800"><span class="p-2 py-1 rounded text-sm bg-gray-700 text-white">{{$answers->count()}}</span> {{$answers->count() <= 1 ? 'Answer' : 'Answers'}}</h3>
+    <div>
+      <span class="text-xs">Sorted by:</span>
+      <select name="" id="" class="px-3 py-1 border border-gray-200 bg-white text-sm text-gray-600 rounded">
+        <option value="score">Highest score (default)</option>
+      </select>
+    </div>
+  </div>
+
   {{-- Answer form  --}}
+
   @if (auth()->check())
     @include('web.question.parts.answer-form')
   @else

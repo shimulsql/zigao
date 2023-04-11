@@ -32,7 +32,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $draftAnswer = null;
-        $question = Question::where('id', $id)->with('tags', 'user')->first();
+        $question = Question::where('id', $id)->with('tags', 'user', 'answers')->first();
         $user = auth()->user();
         
         if($user)
@@ -48,6 +48,7 @@ class QuestionController extends Controller
         $data = [
             'title' => 'Show Question',
             'question' => $question,
+            'answers' => $question->answers,
             'draft' => $draftAnswer,
         ];
 
