@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class QuestionEntry extends Model
 {
     use HasFactory;
 
@@ -13,5 +13,10 @@ class Answer extends Model
         'user_id',
         'question_id',
         'content',
+        'type',
+        'correct',
     ];
+
+    const TYPE_ANSWER = 0;
+    const TYPE_QUESTION = 1;
 }

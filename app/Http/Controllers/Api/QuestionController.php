@@ -8,6 +8,7 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Models\DraftQuestion;
 use App\Http\Controllers\Controller;
+use App\Models\QuestionEntry;
 
 class QuestionController extends Controller
 {
@@ -27,8 +28,14 @@ class QuestionController extends Controller
         $question = Question::create([
             'user_id' => $user->id,
             'title' => $draft->title,
-            'content' => $draft->content,
             'public' => 1,
+        ]);
+
+        QuestionEntry::create([
+            'user_id' => $question->user_id,
+            'question_id' => $question->id,
+            'content' => $draft->content,
+            'type' => QuestionEntry::TYPE_QUESTION
         ]);
 
         // attact tags with question

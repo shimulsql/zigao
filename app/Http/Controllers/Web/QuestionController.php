@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DraftQuestion;
 use App\Http\Controllers\Controller;
 use App\Models\DraftAnswer;
+use App\Models\QuestionEntry;
 
 class QuestionController extends Controller
 {
@@ -32,7 +33,13 @@ class QuestionController extends Controller
     public function show($id)
     {
         $draftAnswer = null;
-        $question = Question::where('id', $id)->with('tags', 'user', 'answers')->first();
+        $question = Question::where('id', $id)->with('tags', 'user')->first();
+        
+        $questionEntry = QuestionEntry::where([
+            ['question_id', '=', $question->id],
+            ['type', '=', QuestionEntry::TYPE_QUESTION]
+        ])->first();
+
         $user = auth()->user();
         
         if($user)
@@ -48,7 +55,8 @@ class QuestionController extends Controller
         $data = [
             'title' => 'Show Question',
             'question' => $question,
-            'answers' => $question->answers,
+            'questionEntry' => $questionEntry,
+            'answers' => $question->entries()->where("type", QuestionEntry::TYPE_ANSWER)->get(),
             'draft' => $draftAnswer,
         ];
 

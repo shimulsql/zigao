@@ -20,7 +20,7 @@ body > .container{
   @apply flex items-stretch grow shrink-0 basis-auto;
 }
 
-/* forms  */
+/* forms  */ 
 
 .reset-input {
     @apply focus-visible:outline-none w-full;

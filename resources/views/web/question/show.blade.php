@@ -60,9 +60,9 @@
       </div>
     </div>
     <div class="grow">
-      <p class="text-gray-700 font-normal">
-        {!!$question->content!!}
-      </p>
+      <div class="ck-content">
+        {!!$questionEntry->content!!}
+      </div>
       <ul class="mt-6">
         @foreach ($question->tags as $tag)
         <li class="inline-block mb-1">

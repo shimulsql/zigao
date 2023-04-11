@@ -75,6 +75,12 @@
   font-weight: bold;
 }
 
+.ck-content p {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgb(49, 49, 49);
+}
+
 /* tables */
 
 .ck-content table {

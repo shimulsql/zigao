@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('title');
-            $table->longText('content');
             $table->integer('public')->default(0);
             $table->integer('views')->default(0);
             $table->timestamps();

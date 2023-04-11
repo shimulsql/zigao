@@ -7,6 +7,7 @@ use App\Models\Question;
 use App\Models\DraftAnswer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\QuestionEntry;
 
 class AnswerController extends Controller
 {
@@ -34,9 +35,9 @@ class AnswerController extends Controller
             ['question_id', $questionId]
         ])->first();
 
-        Answer::create([
-            'user_id' => $draft->user_id,
-            'question_id' => $draft->question_id,
+        QuestionEntry::create([
+            'user_id' => $userId,
+            'question_id' => $questionId,
             'content' => $draft->content,
         ]);
 
