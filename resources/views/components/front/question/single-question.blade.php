@@ -4,7 +4,7 @@
         2 votes
       </div>
       <span class="text-xs border border-emerald-700 text-emerald-700 rounded px-2 py-0.5">
-        1 answer
+        {{$question->entries_count}} {{$question->entries_count == 1 ? 'answer' : 'answers'}}
       </span>
       <div class="mt-2 text-gray-500">
         5 views

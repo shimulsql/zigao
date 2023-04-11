@@ -56,7 +56,7 @@ class QuestionController extends Controller
             'title' => 'Show Question',
             'question' => $question,
             'questionEntry' => $questionEntry,
-            'answers' => $question->entries()->where("type", QuestionEntry::TYPE_ANSWER)->get(),
+            'answers' => $question->entries()->where("type", QuestionEntry::TYPE_ANSWER)->with("user")->get(),
             'draft' => $draftAnswer,
         ];
 

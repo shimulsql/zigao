@@ -19,4 +19,9 @@ class QuestionEntry extends Model
 
     const TYPE_ANSWER = 0;
     const TYPE_QUESTION = 1;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
