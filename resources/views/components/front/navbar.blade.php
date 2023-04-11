@@ -81,9 +81,9 @@
                         @else
                         <li class="p-3">
                             <a href="{{route('login.page')}}"
-                                class="text-sm border border-slate-600 rounded px-4 py-1 text-slate-300">Login</a>
+                                class="text-xs border border-slate-600 rounded px-4 py-1.5 text-slate-300">Login</a>
                             <a href="{{route('register.page')}}"
-                                class="text-sm bg-sky-500 rounded px-4 py-1 text-white">Signup</a>
+                                class="text-xs bg-sky-500 rounded px-4 py-1.5 text-white">Signup</a>
                         </li>
                         @endif
                     </ul>

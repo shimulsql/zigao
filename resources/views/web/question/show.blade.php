@@ -92,7 +92,23 @@
     </div>
   </div>
   {{-- Answer form  --}}
-  @include('web.question.parts.answer-form')
+  @if (auth()->check())
+    @include('web.question.parts.answer-form')
+  @else
+    <div class="p-6 bg-amber-50 mt-6">
+      <p class="text-sm">
+        To answer this question please signin to your account
+      </p>
+      <ul class="flex gap-3 mt-3">
+        <li>
+          <a href="{{route('login.page')}}" class="px-4 py-1.5  border border-gray-400 text-sm text-gray-600">Login</a>
+        </li>
+        <li>
+          <a href="{{route('register.page')}}" class="px-4 py-1.5  border border-blue-400 text-sm text-blue-600">Create account</a>
+        </li>
+      </ul>
+    </div>
+  @endif
 </div>
 @endsection
 

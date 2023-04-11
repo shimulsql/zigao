@@ -31,13 +31,19 @@ class QuestionController extends Controller
 
     public function show($id)
     {
+        $draftAnswer = null;
         $question = Question::where('id', $id)->with('tags', 'user')->first();
         $user = auth()->user();
+        
+        if($user)
+        {
+            $draftAnswer = DraftAnswer::where([
+                ["question_id", "=", $question->id],
+                ["user_id", "=", $user->id],
+            ])->first();
+        }
 
-        $draftAnswer = DraftAnswer::where([
-            ["question_id", "=", $question->id],
-            ["user_id", "=", $user->id],
-        ])->first();
+        
 
         $data = [
             'title' => 'Show Question',
