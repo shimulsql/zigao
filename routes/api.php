@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AnswerController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\QuestionController;
 use Illuminate\Http\Request;
@@ -25,9 +26,11 @@ Route::group(['middleware' => 'api'], function(){
 });
 
 
-// question routes
+/**
+ * Question endpoints
+ */
 
-// save question as draft
+// save question to draft
 Route::group(['middleware' => 'api', 'prefix' => 'question'], function(){
     Route::post('save-draft', [QuestionController::class, 'saveDraft']);
     Route::delete('delete-draft', [QuestionController::class, 'deleteDraft']);
@@ -36,4 +39,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'question'], function(){
 // question routes
 Route::group(['middleware' => 'api'], function(){
     Route::apiResource('question', QuestionController::class);
+});
+
+/**
+ * Answer endpoints
+ */
+
+ // save answer to draft
+Route::group(['middleware' => 'api', 'prefix' => 'answer'], function(){
+    Route::post('draft/save', [AnswerController::class, 'saveDraft']);
+    Route::delete('draft/delete', [AnswerController::class, 'deleteDraft']);
 });

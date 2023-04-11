@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function(){
           // watch all to save data as draft
           this.$watch(['title', 'content', 'tags'], _.debounce(() => {
             this.saveDraft()
-          }, 2000))
+          }, 1000))
 
 
           this.$watch(['complete.title', 'complete.content'], () => {
@@ -260,7 +260,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
       Alpine.data("answerState", () => ({
         content: '',
-
+        question_id: 0,
+        hasError: true,
+        submit() {
+          
+        },
+        saveDraft() {
+          axios.post('/answer/draft/save', {
+            content: this.content,
+            question_id: this.question_id,
+          })
+        },
         init(){
           const that = this;
 
@@ -268,12 +278,22 @@ document.addEventListener("DOMContentLoaded", function(){
             this.content = editor.getData();
             console.log(editor.getData());
           });
+
           this.content = editor.getData();
 
           // Watchers 
           this.$watch('content', (data) => {
-            console.log(data);
+            if(data.length < 20) {
+              this.hasError = true;
+            } else{
+              this.hasError = false;
+            }
           })
+
+          this.$watch('content', _.debounce(() => {
+            this.saveDraft();
+          }, 1000))
+
         }
 
 

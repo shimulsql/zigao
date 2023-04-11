@@ -13,7 +13,11 @@ body {
 }
 
 .container {
-    @apply  2xl:w-[70%] md:w-[98.5%] w-full sm:px-4 px-0 m-auto flex items-stretch grow shrink-0 basis-auto;
+    @apply  2xl:w-[70%] md:w-[98.5%] w-full sm:px-4 px-0 m-auto;
+}
+
+body > .container{
+  @apply flex items-stretch grow shrink-0 basis-auto;
 }
 
 /* forms  */

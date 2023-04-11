@@ -6,6 +6,7 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Models\DraftQuestion;
 use App\Http\Controllers\Controller;
+use App\Models\DraftAnswer;
 
 class QuestionController extends Controller
 {
@@ -31,10 +32,17 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::where('id', $id)->with('tags', 'user')->first();
+        $user = auth()->user();
+
+        $draftAnswer = DraftAnswer::where([
+            ["question_id", "=", $question->id],
+            ["user_id", "=", $user->id],
+        ])->first();
 
         $data = [
             'title' => 'Show Question',
             'question' => $question,
+            'draft' => $draftAnswer,
         ];
 
         return view('web.question.show', $data);
