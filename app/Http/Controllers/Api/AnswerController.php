@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\DraftAnswer;
 use Illuminate\Http\Request;
@@ -21,15 +22,28 @@ class AnswerController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $userId = $request->user->id;
+        $questionId = $request->question_id;
+
+        // get draft
+        $draft = DraftAnswer::where([
+            ['user_id', $userId],
+            ['question_id', $questionId]
+        ])->first();
+
+        Answer::create([
+            'user_id' => $draft->user_id,
+            'question_id' => $draft->question_id,
+            'content' => $draft->content,
+        ]);
+
+        // delete draft
+        $draft->delete();
+
+        return response()->json(['message' => 'Answer posted']);
     }
 
     /**

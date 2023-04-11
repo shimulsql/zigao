@@ -50,3 +50,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'answer'], function(){
     Route::post('draft/save', [AnswerController::class, 'saveDraft']);
     Route::delete('draft/delete', [AnswerController::class, 'deleteDraft']);
 });
+
+Route::group(['middleware' => 'api'], function(){
+    Route::apiResource('answer', AnswerController::class);
+});

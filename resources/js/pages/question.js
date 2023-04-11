@@ -263,13 +263,28 @@ document.addEventListener("DOMContentLoaded", function(){
         question_id: 0,
         hasError: true,
         submit() {
-          
+          if(!this.hasError) {
+            axios.post('/answer', {
+              question_id: this.question_id,
+            })
+            .then(res => {
+              location.reload();
+            })
+          }
         },
         saveDraft() {
           axios.post('/answer/draft/save', {
             content: this.content,
             question_id: this.question_id,
           })
+        },
+        validateAfterPageLoad() {
+          // content validation
+          if(this.content.length < 20) {
+            this.hasError = true;
+          } else{
+            this.hasError = false;
+          }
         },
         init(){
           const that = this;
@@ -280,6 +295,9 @@ document.addEventListener("DOMContentLoaded", function(){
           });
 
           this.content = editor.getData();
+          
+          // validate after page load
+          this.validateAfterPageLoad();
 
           // Watchers 
           this.$watch('content', (data) => {
