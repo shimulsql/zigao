@@ -1,4 +1,4 @@
-<div class="bg-slate-700 fixed left-0 top-0 right-0 shadow-lg z-50 z-50">
+<div class="bg-slate-700 fixed left-0 top-0 right-0 shadow-lg z-50">
     <div class="container">
         <nav class="flex items-center">
             <div class="w-[150px]">

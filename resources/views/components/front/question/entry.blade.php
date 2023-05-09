@@ -1,31 +1,53 @@
-<div class="flex gap-5 border-b border-gray-200 pb-6 mb-6">
+<div class="flex gap-5 border-b border-gray-200 pb-6 mb-6" x-data="questionEntryState">
     <div class="w-[5%] flex flex-col items-center">
       <i class="fa-solid fa-caret-up text-5xl text-orange-500 cursor-pointer" 
-      data-te-toggle="popover"
-      data-te-trigger="hover"
-      data-te-content="This question is useful and clear"
+      data-popover-target="vote-up-popover" 
+      data-popover-placement="right"
+      data-popover-offset="20"
       ></i>
       <span class="text-xl text-gray-500">
         79
       </span>
       <i 
       class="fa-solid fa-caret-down text-5xl text-gray-300 cursor-pointer"
-      data-te-toggle="popover"
-      data-te-trigger="hover"
-      data-te-content="This is not clear or useful"
+      data-popover-target="vote-down-popover" 
+      data-popover-placement="right"
+      data-popover-offset="20"
       ></i>
       <div class="mt-2 text-gray-300 flex flex-col items-center">
         <i class="fa-regular fa-bookmark cursor-pointer"
-        data-te-toggle="popover"
-        data-te-trigger="hover"
-        data-te-content="Bookmark this question"
+        data-popover-target="bookmark-popover" 
+        data-popover-placement="right"
+        data-popover-offset="20"
         ></i>
         <i class="fa-sharp fa-regular fa-clock-rotate-left text-lg hover:text-blue-500 cursor-pointer mt-1"
-          data-te-toggle="popover"
-          data-te-trigger="hover"
-          data-te-content="Show activity on this post"
+        data-popover-target="activity-popover" 
+        data-popover-placement="right"
+        data-popover-offset="20"
         ></i>
       </div>
+      {{-- Popovers  --}}
+      <x-front.ui.popover id="vote-up-popover">
+        <p class="text-gray-800">
+          This is clear and useful
+        </p>
+      </x-front.ui.popover>
+      <x-front.ui.popover id="vote-down-popover">
+        <p class="text-gray-800">
+          This is not clear or useful 
+        </p>
+      </x-front.ui.popover>
+      <x-front.ui.popover id="bookmark-popover">
+        <p class="text-gray-800">
+          Bookmark this question
+        </p>
+      </x-front.ui.popover>
+      <x-front.ui.popover id="activity-popover">
+        <p class="text-gray-800">
+          Show activity on this post
+        </p>
+      </x-front.ui.popover>
+
     </div>
     <div class="grow">
       <div class="ck-content">

@@ -1,7 +1,7 @@
 import "./bootstrap";
 import "../fonts/fontawesome/css/all.min.css";
-import "./twelements";
-
+import 'flowbite';
+import './alpine/index'
 
 // question page js
 import './pages/question.js';
