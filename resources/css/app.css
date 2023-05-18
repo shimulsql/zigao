@@ -23,7 +23,11 @@ body > .container{
 /* forms  */ 
 
 .reset-input {
-    @apply focus-visible:outline-none w-full;
+    @apply focus:outline-none w-full border-transparent focus:border-transparent;
+}
+
+.reset-input:focus{
+  box-shadow: none;
 }
 
 /* backgrounds */
