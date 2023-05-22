@@ -24,4 +24,10 @@ class QuestionEntry extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'voteable');
+    }
 }
