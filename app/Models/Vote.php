@@ -9,6 +9,9 @@ class Vote extends Model
 {
     use HasFactory;
 
+    const VOTE_UP = 1;
+    const VOTE_DOWN = 0;
+
     public function voteable()
     {
         return $this->morphTo();

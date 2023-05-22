@@ -1,18 +1,21 @@
-<div class="flex gap-5 border-b border-gray-200 pb-6 mb-6" x-data="questionEntryState">
+<div class="flex gap-5 border-b border-gray-200 pb-6 mb-6" 
+  x-data="questionEntryState" 
+  x-init="loadData({{$initialData}})"
+>
     <div class="w-[5%] flex flex-col items-center">
-      <i class="fa-solid fa-caret-up text-5xl text-orange-500 cursor-pointer" 
+      <i class="fa-solid fa-caret-up text-5xl text-gray-300 cursor-pointer" 
       data-popover-target="vote-up-popover" 
       data-popover-placement="right"
       data-popover-offset="20"
+      :class="{'text-orange-500': hasVoteUp}"
       ></i>
-      <span class="text-xl text-gray-500">
-        79
-      </span>
+      <span class="text-xl text-gray-500" x-text="voteCount"></span>
       <i 
       class="fa-solid fa-caret-down text-5xl text-gray-300 cursor-pointer"
       data-popover-target="vote-down-popover" 
       data-popover-placement="right"
       data-popover-offset="20"
+      :class="{'text-orange-500': hasVoteDown}"
       ></i>
       <div class="mt-2 text-gray-300 flex flex-col items-center">
         <i class="fa-regular fa-bookmark cursor-pointer"

@@ -34,12 +34,17 @@ class QuestionController extends Controller
     {
         $draftAnswer = null;
         $question = Question::where('id', $id)->with('tags', 'user')->first();
+
         
         $questionEntry = QuestionEntry::where([
             ['question_id', '=', $question->id],
             ['type', '=', QuestionEntry::TYPE_QUESTION]
-        ])->first();
+            ])
+            ->withCount('votes')
+            ->first();
 
+        // dd($questionEntry);
+            
         $user = auth()->user();
         
         if($user)
@@ -50,13 +55,11 @@ class QuestionController extends Controller
             ])->first();
         }
 
-        
-
         $data = [
             'title' => 'Show Question',
             'question' => $question,
             'questionEntry' => $questionEntry,
-            'answers' => $question->entries()->where("type", QuestionEntry::TYPE_ANSWER)->with("user")->get(),
+            'answers' => $question->entries()->where("type", QuestionEntry::TYPE_ANSWER)->with("user")->withCount("votes")->get(),
             'draft' => $draftAnswer,
         ];
 

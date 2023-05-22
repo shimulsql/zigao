@@ -30,7 +30,7 @@
 
 @section('content')
 <div class="px-6 pb-6">
-  <x-front.question.entry :entry="$question" :content="$questionEntry->content"/>  
+  <x-front.question.entry :entry="$questionEntry"/>  
   {{-- List answers --}}
   <div class="flex justify-between px-3 py-1.5 rounded bg-gray-50 my-6">
     <h3 class="text-gray-800"><span class="p-2 py-1 rounded text-sm bg-gray-700 text-white">{{$answers->count()}}</span> {{$answers->count() == 1 ? 'Answer' : 'Answers'}}</h3>

@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Front\Question;
 
+use App\Models\Vote;
 use Illuminate\View\Component;
 
 class Entry extends Component
@@ -27,6 +28,41 @@ class Entry extends Component
      */
     public function render()
     {
-        return view('components.front.question.entry');
+        $initialData = json_encode(
+            $this->initialData()
+        );
+        // dd($this->initialData());
+
+        return view('components.front.question.entry', compact('initialData'));
+    }
+
+    private function initialData()
+    {
+        return [
+            'voteCount' => $this->entry->votes_count,
+            'hasVoteUp' => $this->hasVoteUp(),
+            'hasVoteDown' => $this->hasVoteDown(),
+        ];
+    }
+
+    private function vote()
+    {
+        $userId = @auth()->user()->id;
+
+        if(!$userId) return false;
+
+        $vote = Vote::where([['user_id', $userId], ['voteable_id', $this->entry->id], ['voteable_type', 'App\Models\QuestionEntry']])->first();
+
+        return $vote;
+    }
+
+    private function hasVoteUp()
+    {
+        return $this->vote() && $this->vote()->vote == Vote::VOTE_UP;
+    }
+
+    private function hasVoteDown()
+    {
+        return $this->vote() && $this->vote()->vote == Vote::VOTE_DOWN;
     }
 }
