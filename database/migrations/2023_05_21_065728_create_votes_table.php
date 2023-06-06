@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('voteable_id');
             $table->string('voteable_type');
-            $table->integer('vote');
+            $table->integer('value');
             $table->timestamps();
         });
     }

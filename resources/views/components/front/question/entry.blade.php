@@ -8,6 +8,7 @@
       data-popover-placement="right"
       data-popover-offset="20"
       :class="{'text-orange-500': hasVoteUp}"
+      @click="voteUp"
       ></i>
       <span class="text-xl text-gray-500" x-text="voteCount"></span>
       <i 
@@ -16,6 +17,7 @@
       data-popover-placement="right"
       data-popover-offset="20"
       :class="{'text-orange-500': hasVoteDown}"
+      @click="voteDown"
       ></i>
       <div class="mt-2 text-gray-300 flex flex-col items-center">
         <i class="fa-regular fa-bookmark cursor-pointer"

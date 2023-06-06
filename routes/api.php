@@ -49,6 +49,7 @@ Route::group(['middleware' => 'api'], function(){
 Route::group(['middleware' => 'api', 'prefix' => 'answer'], function(){
     Route::post('draft/save', [AnswerController::class, 'saveDraft']);
     Route::delete('draft/delete', [AnswerController::class, 'deleteDraft']);
+    Route::post('vote', [AnswerController::class, 'vote']);
 });
 
 Route::group(['middleware' => 'api'], function(){

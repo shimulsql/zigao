@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Vote;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\DraftAnswer;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\QuestionEntry;
+use App\Http\Controllers\Controller;
 
 class AnswerController extends Controller
 {
 
+    private $vote;
+    private $request;
+
+    function __construct(Request $r)
+    {
+        $this->request = $r;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -109,4 +117,49 @@ class AnswerController extends Controller
 
         return response()->json(['message' => 'Draft saved']);
     }
+
+    public function vote(Request $request){
+        $entry = QuestionEntry::find($request->id);
+        $this->vote = $entry->hasVote($request->user->id);
+
+        // has same type vote then delete the vote
+        if($this->hasVoteSameType()){
+            $this->vote->delete();
+
+            return response()->json(['message' => 'Vote removed', 'removed' => true]);
+        }
+
+        // has different type vote then update it according to request
+        if($this->hasVoteDiffType()){
+            $this->updateVote();
+
+            return response()->json(['message' => 'Vote updated']);
+        }
+
+        // create a new vote
+        $entry->votes()->create([
+            'user_id' => $request->user->id,
+            'voteable_id' => $request->id,
+            'voteable_type' => 'App\Models\QuestionEntry',
+            'value' => $request->value,
+        ]);
+
+        return response()->json(['message' => 'Vote added']);
+    }
+
+    private function updateVote() {
+        $this->vote->value = $this->request->value;
+        $this->vote->save();
+    }
+
+    private function hasVoteSameType()
+    {
+        return $this->vote && $this->vote->value == $this->request->value;
+    }
+
+    private function hasVoteDiffType()
+    {
+        return $this->vote && $this->vote->value != $this->request->value;
+    }
+
 }

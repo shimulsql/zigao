@@ -30,4 +30,13 @@ class QuestionEntry extends Model
     {
         return $this->morphMany(Vote::class, 'voteable');
     }
+
+    public function hasVote($userId)
+    {
+        return $this->votes()->where([
+            ['voteable_id', $this->id], 
+            ['user_id', $userId],
+            ['voteable_type', 'App\Models\QuestionEntry']
+        ])->first();
+    }
 }

@@ -40,7 +40,7 @@ class QuestionController extends Controller
             ['question_id', '=', $question->id],
             ['type', '=', QuestionEntry::TYPE_QUESTION]
             ])
-            ->withCount('votes')
+            ->withSum('votes as votes_count', 'value')
             ->first();
 
         // dd($questionEntry);
@@ -59,7 +59,7 @@ class QuestionController extends Controller
             'title' => 'Show Question',
             'question' => $question,
             'questionEntry' => $questionEntry,
-            'answers' => $question->entries()->where("type", QuestionEntry::TYPE_ANSWER)->with("user")->withCount("votes")->get(),
+            'answers' => $question->entries()->where("type", QuestionEntry::TYPE_ANSWER)->with("user")->withSum('votes as votes_count', 'value')->get(),
             'draft' => $draftAnswer,
         ];
 

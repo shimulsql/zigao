@@ -39,6 +39,7 @@ class Entry extends Component
     private function initialData()
     {
         return [
+            'id' => $this->entry->id,
             'voteCount' => $this->entry->votes_count,
             'hasVoteUp' => $this->hasVoteUp(),
             'hasVoteDown' => $this->hasVoteDown(),
@@ -58,11 +59,11 @@ class Entry extends Component
 
     private function hasVoteUp()
     {
-        return $this->vote() && $this->vote()->vote == Vote::VOTE_UP;
+        return $this->vote() && $this->vote()->value == Vote::VOTE_UP;
     }
 
     private function hasVoteDown()
     {
-        return $this->vote() && $this->vote()->vote == Vote::VOTE_DOWN;
+        return $this->vote() && $this->vote()->value == Vote::VOTE_DOWN;
     }
 }
